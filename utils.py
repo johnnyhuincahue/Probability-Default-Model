@@ -211,3 +211,24 @@ def processing(df_inputs_prepr):
     df_inputs_prepr['mths_since_last_record:81-86'] = np.where((df_inputs_prepr['mths_since_last_record'] >= 81) & (df_inputs_prepr['mths_since_last_record'] <= 86), 1, 0)
     df_inputs_prepr['mths_since_last_record:>86'] = np.where((df_inputs_prepr['mths_since_last_record'] > 86), 1, 0)
     return df_inputs_prepr
+def woe_ordered_continuous(df, continuous_variable_name, target_variable_name):
+    # Crear copia para evitar SettingWithCopyWarning
+    df_woe = df[[continuous_variable_name, target_variable_name]].copy()
+    
+    # Agrupar y calcular n_obs y prop_good en un solo paso
+    df_woe = df_woe.groupby(continuous_variable_name)[target_variable_name].agg(['count', 'mean']).reset_index()
+    
+    # Asignar nombres correctos (ahora coinciden con las 3 columnas resultantes)
+    df_woe.columns = [continuous_variable_name, 'n_obs', 'prop_good']
+    
+    df_woe['prop_n_obs'] = df_woe['n_obs'] / df_woe['n_obs'].sum()
+    df_woe['n_good'] = df_woe['prop_good'] * df_woe['n_obs']
+    df_woe['n_bad'] = (1 - df_woe['prop_good']) * df_woe['n_obs']
+    df_woe['prop_n_good'] = df_woe['n_good'] / df_woe['n_good'].sum()
+    df_woe['prop_n_bad'] = df_woe['n_bad'] / df_woe['n_bad'].sum()
+    
+    # Cálculo de WoE e IV por fila
+    df_woe['WoE'] = np.log(df_woe['prop_n_good'] / df_woe['prop_n_bad'])
+    df_woe['IV'] = (df_woe['prop_n_good'] - df_woe['prop_n_bad']) * df_woe['WoE']
+    
+    return df_woe

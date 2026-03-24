@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import pickle
 import logging
-from utils import load_data, woe_discrete, processing
+from utils import load_data, woe_discrete, woe_ordered_continuous, processing
 from model import get_metrics, build_scorecard, LogisticRegression_with_p_values
 from plots import plot_roc, plot_gini, plot_ks, plot_woe
 
@@ -103,27 +103,35 @@ with tab1:
     df_train_full = pd.concat([X_train, y_train], axis=1)
     target_col = y_train.columns[0]
     
-    categorical_columns = ['grade', 'home_ownership', 'verification_status', 'purpose', 'initial_list_status']
-    available_vars = [col for col in categorical_columns if col in df_train_full.columns]
+    # Identificar variables discretas y factores de variables continuas
+    categorical_vars = ['grade', 'home_ownership', 'verification_status', 'purpose', 'initial_list_status']
+    continuous_factors = [col for col in df_train_full.columns if '_factor' in col]
+    
+    all_analyzable_vars = categorical_vars + continuous_factors
+    available_vars = [col for col in all_analyzable_vars if col in df_train_full.columns]
     
     if available_vars:
         with col1:
             selected_var = st.selectbox("Select a variable:", available_vars)
         
         try:
-            df_woe = woe_discrete(df_train_full, selected_var, target_col)
+            # Lógica de selección de función
+            if '_factor' in selected_var:
+                df_woe = woe_ordered_continuous(df_train_full, selected_var, target_col)
+            else:
+                df_woe = woe_discrete(df_train_full, selected_var, target_col)
+                
             with col2:
                 st.plotly_chart(plot_woe(df_woe), use_container_width=True)
+            
+            st.write(f"Information Value (IV): {df_woe['IV'].sum():.4f}")
             st.dataframe(df_woe, use_container_width=True)
-            logging.info(f"Cálculo WOE exitoso para: {selected_var}")
+            
         except Exception as e:
-            logging.error(f"Error al calcular WOE para {selected_var}: {e}")
-            st.error("Error al procesar la variable seleccionada.")
-    else:
-        st.warning("Las variables originales no se encuentran en el dataset preprocesado. Ejecute WOE sobre datos crudos.")
+            st.error(f"Error al procesar {selected_var}: {e}")
 
 with tab2:
-    st.header("Métricas de Desempeño del Modelo")
+    st.header("Model Performance Metrics")
     
     try:
         y_hat_test_proba = reg2.model.predict_proba(inputs_test)[:, 1]
@@ -149,7 +157,7 @@ with tab2:
         st.error("Error al procesar métricas del modelo.")
 
 with tab3:
-    st.header("Scorecard Operativo")
+    st.header("Scorecard")
     
     try:
         df_scorecard = build_scorecard(reg2, trained_features, ref_categories)
@@ -159,8 +167,8 @@ with tab3:
         max_sum_score = df_scorecard.groupby('Original feature name')['Score - Final'].max().sum()
         
         col1, col2 = st.columns(2)
-        col1.metric("Score Mínimo Teórico", int(min_sum_score))
-        col2.metric("Score Máximo Teórico", int(max_sum_score))
+        col1.metric("Minimum Score", int(min_sum_score))
+        col2.metric("Maximum Score", int(max_sum_score))
         
         st.dataframe(df_scorecard, use_container_width=True, height=600)
         logging.info("Scorecard construida exitosamente.")
@@ -257,7 +265,7 @@ with tab4:
                 
                 st.success("Calculation completed successfully.")
                 sc1, sc2 = st.columns(2)
-                sc1.metric("Probabilidad de No Default (Good)", f"{prob * 100:.2f}%")
+                sc1.metric("Non Default Probability (Good)", f"{prob * 100:.2f}%")
                 sc2.metric("Credit Score", int(round(score)))
                 logging.info(f"Simulación ejecutada. PD calculada: {prob:.4f}, Score: {int(round(score))}")          
             except Exception as e:
