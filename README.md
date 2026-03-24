@@ -34,17 +34,17 @@ Variables clave utilizadas en el modelado:
    * Área bajo la curva ROC (AUROC).
    * Coeficiente de Gini.
    * Estadística de Kolmogorov-Smirnov (KS).
-   * Estrategia de Cutoffs basada en tasas de aprobación y rechazo.
-   * 
+
 ![image alt](https://github.com/johnnyhuincahue/Probability-Default-Model/blob/68fc6ff3da5f2d8a4cfd9d3fae652ed2dd7d0f61/images/tab2.PNG)
 
-3. **Scorecard Operativa:** Tabla de puntuación derivada de los coeficientes del modelo de regresión logística, escalada a un rango estándar 300 - 850 puntos.
+3. **Scorecard Operativa:** Tabla de puntuación derivada de los coeficientes del modelo de regresión logística, escalada a un rango estándar 300 - 850 puntos. Estrategia de Cutoffs basada en tasas de aprobación y rechazo.
 
 ![image alt](https://github.com/johnnyhuincahue/Probability-Default-Model/blob/18c9774021266146e0cf0bb0f0c1582174308030/images/tab3.PNG)
 
 4. **Simulador de Clientes:** Motor de inferencia que permite el ingreso manual de características de un solicitante para calcular instantáneamente su Probabilidad de Default y su Credit Score final.
 5. 
 ![image alt](https://github.com/johnnyhuincahue/Probability-Default-Model/blob/18c9774021266146e0cf0bb0f0c1582174308030/images/tab4.PNG)
+
 ## Metodología
 
 1. **Preprocesamiento:** Limpieza de datos, imputación de valores nulos y creación de variables indicadoras (dummies) agrupadadas categóricamente.
