@@ -11,11 +11,11 @@ Diseñado para su uso en entornos financieros, permite la evaluación visual del
 El proyecto utiliza datos de Lending Club, una plataforma de préstamos peer-to-peer en EE. UU. El conjunto de datos histórico (2007-2014) contiene 466,285 observaciones y 74 variables, detallando el estado de los préstamos (Vigente, Atrasado, Pagado, etc.), información de pagos y características sociodemográficas y financieras de los solicitantes.
 
 Variables clave utilizadas en el modelado:
-* Características del préstamo: loanAmnt (Monto), term (Plazo), intRate (Tasa de interés), grade (Calificación LC), purpose (Propósito).
+* Características del préstamo: `loanAmnt` (Monto), `term` (Plazo), `intRate` (Tasa de interés), `grade` (Calificación LC), `purpose` (Propósito).
 
-* Perfil del solicitante: empLength (Antigüedad laboral), homeOwnership (Situación habitacional), annualInc (Ingreso anual), addrState (Estado de residencia).
+* Perfil del solicitante: `empLength` (Antigüedad laboral), `homeOwnership` (Situación habitacional), `annualInc` (Ingreso anual), `addrState` (Estado de residencia).
 
-* Historial crediticio: dti (Deuda a ingresos), delinq2Yrs (Atrasos en 2 años), inqLast6Mths (Consultas en 6 meses), openAcc (Líneas de crédito abiertas), pubRec (Registros públicos despectivos).
+* Historial crediticio: `dti` (Deuda a ingresos), `delinq2Yrs` (Atrasos en 2 años), `inqLast6Mths` (Consultas en 6 meses), `openAcc` (Líneas de crédito abiertas), `pubRec` (Registros públicos despectivos).
 ## Arquitectura y Tecnologías
 
 * **Lenguaje:** Python 3.x
