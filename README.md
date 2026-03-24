@@ -18,7 +18,7 @@ Variables clave utilizadas en el modelado:
 * Historial crediticio: `dti` (Deuda a ingresos), `delinq2Yrs` (Atrasos en 2 años), `inqLast6Mths` (Consultas en 6 meses), `openAcc` (Líneas de crédito abiertas), `pubRec` (Registros públicos despectivos).
 ## Arquitectura y Tecnologías
 
-* **Lenguaje:** Python 3.x
+* **Lenguaje:** Python 3
 * **Modelado:** Scikit-Learn, SciPy
 * **Manipulación de Datos:** Pandas, NumPy
 * **Visualización:** Plotly, Matplotlib, Seaborn
