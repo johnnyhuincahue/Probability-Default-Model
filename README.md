@@ -49,7 +49,7 @@ Variables clave utilizadas en el modelado:
 
 1. **Preprocesamiento:** Limpieza de datos, imputación de valores nulos y creación de variables indicadoras (dummies) agrupadadas categóricamente.
 2. **Ingeniería de Características:** Cálculo de WoE e Information Value (IV) para maximizar la separación entre las clases ("Good" vs "Bad" loans).
-3. **Modelado:** Regresión Logística estándar aumentada con el cálculo de valores-p (p-values) mediante la matriz de información de Fisher para validación estadística de los coeficientes.
+3. **Modelado:** Regresión Logística estándar aumentada con el cálculo de p-values mediante la matriz de información de Fisher para validación estadística de los coeficientes.
 4. **Escalamiento del Score:** Transformación lineal de las probabilidades logarítmicas (log-odds) generadas por el modelo en un sistema de puntuación discreto, utilizando un puntaje base y un factor de escalamiento (PDO - Points to Double the Odds).
 
 ## Estructura del Repositorio
