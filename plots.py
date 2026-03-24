@@ -19,7 +19,7 @@ def plot_ks(df_probs, ks_score):
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=df_probs['proba'], y=df_probs['Cumulative Perc Bad'], mode='lines', name='Cumulative % Bad', line=dict(color='red', width=2)))
     fig.add_trace(go.Scatter(x=df_probs['proba'], y=df_probs['Cumulative Perc Good'], mode='lines', name='Cumulative % Good', line=dict(color='blue', width=2)))
-    fig.update_layout(title=f'Kolmogorov-Smirnov', xaxis_title='Estimated Probability for being Good', yaxis_title='Cumulative %', template='plotly_dark')
+    fig.update_layout(title='Kolmogorov-Smirnov', xaxis_title='Estimated Probability for being Good', yaxis_title='Cumulative %', template='plotly_dark')
     return fig
 
 def plot_woe(df_woe):
