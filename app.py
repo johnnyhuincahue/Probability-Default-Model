@@ -3,9 +3,9 @@ import pandas as pd
 import numpy as np
 import pickle
 import logging
-from utils import load_data, woe_discrete, woe_ordered_continuous, processing
-from model import get_metrics, build_scorecard, LogisticRegression_with_p_values
-from plots import plot_roc, plot_gini, plot_ks, plot_woe
+from utils import woe_discrete, woe_ordered_continuous, processing
+from model import get_metrics, build_scorecard
+from plots import plot_roc, plot_lorenz, plot_ks, plot_woe
 
 logging.basicConfig(
     filename='app.log',
@@ -148,7 +148,7 @@ with tab2:
         with c1:
             st.plotly_chart(plot_roc(fpr, tpr, auroc), use_container_width=True)
         with c2:
-            st.plotly_chart(plot_gini(df_probs, gini), use_container_width=True)
+            st.plotly_chart(plot_lorenz(df_probs, gini), use_container_width=True)
         with c3:
             st.plotly_chart(plot_ks(df_probs, ks), use_container_width=True)
         logging.info("Métricas de desempeño calculadas exitosamente.")
