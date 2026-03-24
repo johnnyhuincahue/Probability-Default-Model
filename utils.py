@@ -8,7 +8,39 @@ def load_data(file_path):
         return pd.read_csv(file_path, index_col=0)
     except FileNotFoundError:
         return None
-
+def preprocessing(loan_data: pd.DataFrame) -> pd.DataFrame:
+    loan_data['emp_length_int'] = loan_data['emp_length'].str.replace('+ years', '')
+    loan_data['emp_length_int'] = loan_data['emp_length_int'].str.replace('< 1 year', str(0))
+    loan_data['emp_length_int'] = loan_data['emp_length_int'].replace(np.nan, str(0))
+    loan_data['emp_length_int'] = loan_data['emp_length_int'].str.replace(' years', '')
+    loan_data['emp_length_int'] = loan_data['emp_length_int'].str.replace(' year', '')
+    loan_data['emp_length_int'] = pd.to_numeric(loan_data['emp_length_int'])
+    loan_data['term_int'] = loan_data['term'].str.replace(' months','')
+    loan_data['term_int'] = pd.to_numeric(loan_data['term_int'])
+    loan_data['earliest_cr_line_date'] = pd.to_datetime(loan_data['earliest_cr_line'], format = '%b-%y')
+    loan_data['mths_since_earliest_cr_line'] = round((pd.to_datetime('2017-12-01') - loan_data['earliest_cr_line_date']).dt.days / 30.44)
+    loan_data.loc[loan_data['mths_since_earliest_cr_line'] < 0, 'mths_since_earliest_cr_line'] = loan_data['mths_since_earliest_cr_line'].max()
+    loan_data['issue_d_date'] = pd.to_datetime(loan_data['issue_d'], format = '%b-%y')
+    loan_data['mths_since_issue_d'] = round((pd.to_datetime('2017-12-01') - loan_data['issue_d_date']).dt.days / 30.44)
+    loan_data_dummies = [pd.get_dummies(loan_data['grade'], prefix = 'grade', prefix_sep = ':'),
+                         pd.get_dummies(loan_data['sub_grade'], prefix = 'sub_grade', prefix_sep = ':'),
+                         pd.get_dummies(loan_data['home_ownership'], prefix = 'home_ownership', prefix_sep = ':'),
+                         pd.get_dummies(loan_data['verification_status'], prefix = 'verification_status', prefix_sep = ':'),
+                         pd.get_dummies(loan_data['loan_status'], prefix = 'loan_status', prefix_sep = ':'),
+                         pd.get_dummies(loan_data['purpose'], prefix = 'purpose', prefix_sep = ':'),
+                         pd.get_dummies(loan_data['addr_state'], prefix = 'addr_state', prefix_sep = ':'),
+                         pd.get_dummies(loan_data['initial_list_status'], prefix = 'initial_list_status', prefix_sep = ':')]
+    loan_data_dummies = pd.concat(loan_data_dummies, axis = 1)
+    loan_data = pd.concat([loan_data, loan_data_dummies], axis = 1)
+    loan_data.fillna({'total_rev_hi_lim' : loan_data['funded_amnt']}, inplace = True)
+    columns_to_fill = ['mths_since_earliest_cr_line', 'acc_now_delinq', 'total_acc', 'pub_rec', 'open_acc'
+                       , 'inq_last_6mths', 'delinq_2yrs', 'emp_length_int']
+    loan_data.fillna({col : 0 for col in columns_to_fill}, inplace = True)
+    loan_data.fillna({'annual_inc' : loan_data['annual_inc'].mean()}, inplace = True)
+    loan_data['good_bad'] = np.where(loan_data['loan_status'].isin(['Charged Off', 'Default',
+                                                           'Does not meet the credit policy. Status:Charged Off',
+                                                           'Late (31-120 days)']), 0, 1)
+    return loan_data
 def woe_discrete(df: pd.DataFrame, discrete_variable_name: str, good_bad_variable_name: str) -> pd.DataFrame:
     df_woe = pd.concat([df[discrete_variable_name], df[good_bad_variable_name]], axis=1)
     df_woe = pd.concat([
