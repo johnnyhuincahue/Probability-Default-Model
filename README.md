@@ -54,7 +54,8 @@ Variables clave utilizadas en el modelado:
     |   ├── LCDataDictionary.xlsx
     └── .streamlit/
         └── config.toml         # Configuración del tema oscuro de la interfaz
-
+## Imagenes ilustrativas
+![image alt] (https://github.com/johnnyhuincahue/Probability-Default-Model/blob/68fc6ff3da5f2d8a4cfd9d3fae652ed2dd7d0f61/images/tab2.PNG)
 ## Instalación y Ejecución
 
 1. Clonar el repositorio.
