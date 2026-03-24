@@ -1,4 +1,4 @@
-# Modelo de Probabilidad de Default (PD) y Scorecard Crediticio
+# Modelo de Probabilidad de Default y Scorecard Crediticio
 
 ## Resumen del Proyecto
 
