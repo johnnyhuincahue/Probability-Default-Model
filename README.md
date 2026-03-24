@@ -2,7 +2,7 @@
 
 ## Resumen del Proyecto
 
-Implementación end-to-end de un modelo de riesgo crediticio para estimar la Probabilidad de Default (PD) de solicitantes de préstamos. El sistema incluye el procesamiento de datos brutos, la transformación de variables mediante Weight of Evidence (WoE), el entrenamiento de un modelo de Regresión Logística interpretable y el despliegue de una interfaz interactiva construida con Streamlit.
+Implementación de un modelo de riesgo crediticio para estimar la Probabilidad de Default (PD) de solicitantes de préstamos. El sistema incluye el procesamiento de datos brutos, la transformación de variables mediante Weight of Evidence (WoE), el entrenamiento de un modelo de Regresión Logística interpretable y el despliegue de una interfaz interactiva construida con Streamlit.
 
 Diseñado para su uso en entornos financieros, permite la evaluación visual del rendimiento del modelo y la simulación en tiempo real de puntuaciones crediticias (Credit Scores).
 
