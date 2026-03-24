@@ -6,6 +6,16 @@ Implementación end-to-end de un modelo de riesgo crediticio para estimar la Pro
 
 Diseñado para su uso en entornos financieros, permite la evaluación visual del rendimiento del modelo y la simulación en tiempo real de puntuaciones crediticias (Credit Scores).
 
+## Conjunto de Datos (Lending Club)
+
+El proyecto utiliza datos de Lending Club, una plataforma de préstamos peer-to-peer en EE. UU. El conjunto de datos histórico (2007-2014) contiene 466,285 observaciones y 74 variables, detallando el estado de los préstamos (Vigente, Atrasado, Pagado, etc.), información de pagos y características sociodemográficas y financieras de los solicitantes.
+
+Variables clave utilizadas en el modelado:
+* Características del préstamo: loanAmnt (Monto), term (Plazo), intRate (Tasa de interés), grade (Calificación LC), purpose (Propósito).
+
+* Perfil del solicitante: empLength (Antigüedad laboral), homeOwnership (Situación habitacional), annualInc (Ingreso anual), addrState (Estado de residencia).
+
+* Historial crediticio: dti (Deuda a ingresos), delinq2Yrs (Atrasos en 2 años), inqLast6Mths (Consultas en 6 meses), openAcc (Líneas de crédito abiertas), pubRec (Registros públicos despectivos).
 ## Arquitectura y Tecnologías
 
 * **Lenguaje:** Python 3.x
@@ -21,7 +31,7 @@ Diseñado para su uso en entornos financieros, permite la evaluación visual del
    * Área bajo la curva ROC (AUROC).
    * Coeficiente de Gini.
    * Estadística de Kolmogorov-Smirnov (KS).
-   * Estrategia de Puntos de Corte (Cutoffs) basada en tasas de aprobación y rechazo.
+   * Estrategia de Cutoffs basada en tasas de aprobación y rechazo.
 3. **Scorecard Operativa:** Tabla de puntuación derivada de los coeficientes del modelo de regresión logística, escalada a un rango estándar 300 - 850 puntos.
 4. **Simulador de Clientes:** Motor de inferencia que permite el ingreso manual de características de un solicitante para calcular instantáneamente su Probabilidad de Default y su Credit Score final.
 
@@ -40,10 +50,8 @@ Diseñado para su uso en entornos financieros, permite la evaluación visual del
     ├── plots.py                # Funciones de visualización con Plotly
     ├── pd_model.sav            # Modelo entrenado serializado
     ├── data/                   # Directorio con los sets de entrenamiento y prueba
-    │   ├── loan_data_inputs_train.csv
-    │   ├── loan_data_targets_train.csv
-    │   ├── loan_data_inputs_test.csv
-    │   └── loan_data_targets_test.csv
+    │   ├── data.rar
+    |   ├── LCDataDictionary.xlsx
     └── .streamlit/
         └── config.toml         # Configuración del tema oscuro de la interfaz
 
@@ -51,8 +59,10 @@ Diseñado para su uso en entornos financieros, permite la evaluación visual del
 
 1. Clonar el repositorio.
 
-2. Instalar las dependencias requeridas:
+2. Descomprimir el archivo rar que contiene los datos.
+
+3. Instalar las dependencias requeridas:
     pip install pandas numpy scikit-learn scipy plotly streamlit
 
-3. Ejecutar la aplicación:
+4. Ejecutar la aplicación:
     streamlit run app.py
