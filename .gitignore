@@ -1,2 +1,3 @@
 data/*.csv
 pd_model.sav
+notebooks/*

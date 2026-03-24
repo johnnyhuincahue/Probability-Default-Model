@@ -58,56 +58,48 @@ def woe_discrete(df: pd.DataFrame, discrete_variable_name: str, good_bad_variabl
     df_woe = df_woe.sort_values(['WoE']).reset_index(drop=True)
     df_woe['IV'] = (df_woe['prop_n_good'] - df_woe['prop_n_bad']) * df_woe['WoE']
     return df_woe
-def processing(df_inputs_prepr):
-    df_inputs_prepr['home_ownership:RENT_OTHER_NONE_ANY'] = sum([df_inputs_prepr['home_ownership:RENT'], df_inputs_prepr['home_ownership:OTHER'], 
-                                                                 df_inputs_prepr['home_ownership:NONE'],df_inputs_prepr['home_ownership:ANY']])
-    if ['addr_state:ND'] in df_inputs_prepr.columns.values:
-      pass
+def safe_sum(df, new_col, cols_to_sum):
+    existing_cols = [c for c in cols_to_sum if c in df.columns]
+    if existing_cols:
+        df[new_col] = df[existing_cols].sum(axis=1)
     else:
-        df_inputs_prepr['addr_state:ND'] = 0
-    df_inputs_prepr['addr_state:ND_NE_IA_NV_FL_HI_AL'] = sum([df_inputs_prepr['addr_state:ND'], df_inputs_prepr['addr_state:NE'],
-                                                  df_inputs_prepr['addr_state:IA'], df_inputs_prepr['addr_state:NV'],
-                                                  df_inputs_prepr['addr_state:FL'], df_inputs_prepr['addr_state:HI'],
-                                                              df_inputs_prepr['addr_state:AL']])
+        df[new_col] = 0
+    return df
+def processing(df_inputs_prepr):
+    # Home ownership
+    df_inputs_prepr = safe_sum(df_inputs_prepr, 'home_ownership:RENT_OTHER_NONE_ANY',
+                               ['home_ownership:RENT', 'home_ownership:OTHER', 'home_ownership:NONE', 'home_ownership:ANY'])
     
-    df_inputs_prepr['addr_state:NM_VA'] = sum([df_inputs_prepr['addr_state:NM'], df_inputs_prepr['addr_state:VA']])
+    # Addr state
+    df_inputs_prepr = safe_sum(df_inputs_prepr, 'addr_state:ND', ['addr_state:ND'])
+    df_inputs_prepr = safe_sum(df_inputs_prepr, 'addr_state:ND_NE_IA_NV_FL_HI_AL',
+                               ['addr_state:ND', 'addr_state:NE', 'addr_state:IA', 'addr_state:NV', 
+                                'addr_state:FL', 'addr_state:HI', 'addr_state:AL'])
+    df_inputs_prepr = safe_sum(df_inputs_prepr, 'addr_state:NM_VA', ['addr_state:NM', 'addr_state:VA'])
+    df_inputs_prepr = safe_sum(df_inputs_prepr, 'addr_state:OK_TN_MO_LA_MD_NC',
+                               ['addr_state:OK', 'addr_state:TN', 'addr_state:MO', 'addr_state:LA', 
+                                'addr_state:MD', 'addr_state:NC'])
+    df_inputs_prepr = safe_sum(df_inputs_prepr, 'addr_state:UT_KY_AZ_NJ', ['addr_state:UT', 'addr_state:KY', 'addr_state:AZ', 'addr_state:NJ'])
+    df_inputs_prepr = safe_sum(df_inputs_prepr, 'addr_state:AR_MI_PA_OH_MN',
+                               ['addr_state:AR', 'addr_state:MI', 'addr_state:PA', 'addr_state:OH', 'addr_state:MN'])
+    df_inputs_prepr = safe_sum(df_inputs_prepr, 'addr_state:RI_MA_DE_SD_IN',
+                               ['addr_state:RI', 'addr_state:MA', 'addr_state:DE', 'addr_state:SD', 'addr_state:IN'])
+    df_inputs_prepr = safe_sum(df_inputs_prepr, 'addr_state:GA_WA_OR', ['addr_state:GA', 'addr_state:WA', 'addr_state:OR'])
+    df_inputs_prepr = safe_sum(df_inputs_prepr, 'addr_state:WI_MT', ['addr_state:WI', 'addr_state:MT'])
+    df_inputs_prepr = safe_sum(df_inputs_prepr, 'addr_state:IL_CT', ['addr_state:IL', 'addr_state:CT'])
+    df_inputs_prepr = safe_sum(df_inputs_prepr, 'addr_state:KS_SC_CO_VT_AK_MS',
+                               ['addr_state:KS', 'addr_state:SC', 'addr_state:CO', 'addr_state:VT', 'addr_state:AK', 'addr_state:MS'])
+    df_inputs_prepr = safe_sum(df_inputs_prepr, 'addr_state:WV_NH_WY_DC_ME_ID',
+                               ['addr_state:WV', 'addr_state:NH', 'addr_state:WY', 'addr_state:DC', 'addr_state:ME', 'addr_state:ID'])
     
-    df_inputs_prepr['addr_state:OK_TN_MO_LA_MD_NC'] = sum([df_inputs_prepr['addr_state:OK'], df_inputs_prepr['addr_state:TN'],
-                                                  df_inputs_prepr['addr_state:MO'], df_inputs_prepr['addr_state:LA'],
-                                                  df_inputs_prepr['addr_state:MD'], df_inputs_prepr['addr_state:NC']])
-    
-    df_inputs_prepr['addr_state:UT_KY_AZ_NJ'] = sum([df_inputs_prepr['addr_state:UT'], df_inputs_prepr['addr_state:KY'],
-                                                  df_inputs_prepr['addr_state:AZ'], df_inputs_prepr['addr_state:NJ']])
-    
-    df_inputs_prepr['addr_state:AR_MI_PA_OH_MN'] = sum([df_inputs_prepr['addr_state:AR'], df_inputs_prepr['addr_state:MI'],
-                                                  df_inputs_prepr['addr_state:PA'], df_inputs_prepr['addr_state:OH'],
-                                                  df_inputs_prepr['addr_state:MN']])
-    
-    df_inputs_prepr['addr_state:RI_MA_DE_SD_IN'] = sum([df_inputs_prepr['addr_state:RI'], df_inputs_prepr['addr_state:MA'],
-                                                  df_inputs_prepr['addr_state:DE'], df_inputs_prepr['addr_state:SD'],
-                                                  df_inputs_prepr['addr_state:IN']])
-    
-    df_inputs_prepr['addr_state:GA_WA_OR'] = sum([df_inputs_prepr['addr_state:GA'], df_inputs_prepr['addr_state:WA'],
-                                                  df_inputs_prepr['addr_state:OR']])
-    
-    df_inputs_prepr['addr_state:WI_MT'] = sum([df_inputs_prepr['addr_state:WI'], df_inputs_prepr['addr_state:MT']])
-    
-    df_inputs_prepr['addr_state:IL_CT'] = sum([df_inputs_prepr['addr_state:IL'], df_inputs_prepr['addr_state:CT']])
-    
-    df_inputs_prepr['addr_state:KS_SC_CO_VT_AK_MS'] = sum([df_inputs_prepr['addr_state:KS'], df_inputs_prepr['addr_state:SC'],
-                                                  df_inputs_prepr['addr_state:CO'], df_inputs_prepr['addr_state:VT'],
-                                                  df_inputs_prepr['addr_state:AK'], df_inputs_prepr['addr_state:MS']])
-    
-    df_inputs_prepr['addr_state:WV_NH_WY_DC_ME_ID'] = sum([df_inputs_prepr['addr_state:WV'], df_inputs_prepr['addr_state:NH'],
-                                                  df_inputs_prepr['addr_state:WY'], df_inputs_prepr['addr_state:DC'],
-                                                  df_inputs_prepr['addr_state:ME'], df_inputs_prepr['addr_state:ID']])
-    df_inputs_prepr['purpose:educ__sm_b__wedd__ren_en__mov__house'] = sum([df_inputs_prepr['purpose:educational'], df_inputs_prepr['purpose:small_business'],
-                                                                     df_inputs_prepr['purpose:wedding'], df_inputs_prepr['purpose:renewable_energy'],
-                                                                     df_inputs_prepr['purpose:moving'], df_inputs_prepr['purpose:house']])
-    df_inputs_prepr['purpose:oth__med__vacation'] = sum([df_inputs_prepr['purpose:other'], df_inputs_prepr['purpose:medical'],
-                                                 df_inputs_prepr['purpose:vacation']])
-    df_inputs_prepr['purpose:major_purch__car__home_impr'] = sum([df_inputs_prepr['purpose:major_purchase'], df_inputs_prepr['purpose:car'],
-                                                            df_inputs_prepr['purpose:home_improvement']])
+    # Purpose
+    df_inputs_prepr = safe_sum(df_inputs_prepr, 'purpose:educ__sm_b__wedd__ren_en__mov__house',
+                               ['purpose:educational', 'purpose:small_business', 'purpose:wedding',
+                                'purpose:renewable_energy', 'purpose:moving', 'purpose:house'])
+    df_inputs_prepr = safe_sum(df_inputs_prepr, 'purpose:oth__med__vacation',
+                               ['purpose:other', 'purpose:medical', 'purpose:vacation'])
+    df_inputs_prepr = safe_sum(df_inputs_prepr, 'purpose:major_purch__car__home_impr',
+                               ['purpose:major_purchase', 'purpose:car', 'purpose:home_improvement'])
     df_inputs_prepr['term:36'] = np.where((df_inputs_prepr['term_int'] == 36), 1, 0)
     df_inputs_prepr['term:60'] = np.where((df_inputs_prepr['term_int'] == 60), 1, 0)
     df_inputs_prepr['emp_length:0'] = np.where(df_inputs_prepr['emp_length_int'].isin([0]), 1, 0)
