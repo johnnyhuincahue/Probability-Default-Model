@@ -1,0 +1,114 @@
+2026-03-24 00:43:14,961 - INFO - Archivos de datos cargados exitosamente.
+2026-03-24 00:43:16,707 - INFO - Modelo cargado exitosamente.
+2026-03-24 00:45:16,015 - INFO - Archivos de datos cargados exitosamente.
+2026-03-24 00:45:17,298 - INFO - Modelo cargado exitosamente.
+2026-03-24 00:45:17,712 - INFO - Cálculo WOE exitoso para: grade
+2026-03-24 00:45:17,977 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:45:17,997 - INFO - Scorecard construida exitosamente.
+2026-03-24 00:45:42,031 - INFO - Cálculo WOE exitoso para: grade
+2026-03-24 00:45:42,275 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:45:42,281 - INFO - Scorecard construida exitosamente.
+2026-03-24 00:45:44,618 - INFO - Cálculo WOE exitoso para: home_ownership
+2026-03-24 00:45:44,871 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:45:44,877 - INFO - Scorecard construida exitosamente.
+2026-03-24 00:45:48,481 - INFO - Cálculo WOE exitoso para: verification_status
+2026-03-24 00:45:48,720 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:45:48,726 - INFO - Scorecard construida exitosamente.
+2026-03-24 00:45:52,176 - INFO - Cálculo WOE exitoso para: purpose
+2026-03-24 00:45:52,414 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:45:52,421 - INFO - Scorecard construida exitosamente.
+2026-03-24 00:45:56,699 - INFO - Cálculo WOE exitoso para: initial_list_status
+2026-03-24 00:45:56,941 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:45:56,947 - INFO - Scorecard construida exitosamente.
+2026-03-24 00:46:34,623 - INFO - Cálculo WOE exitoso para: initial_list_status
+2026-03-24 00:46:34,871 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:46:34,876 - INFO - Scorecard construida exitosamente.
+2026-03-24 00:46:34,881 - ERROR - Error durante simulación: 'home_ownership:RENT'
+2026-03-24 00:46:49,520 - INFO - Cálculo WOE exitoso para: initial_list_status
+2026-03-24 00:46:49,787 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:46:49,792 - INFO - Scorecard construida exitosamente.
+2026-03-24 00:46:49,796 - ERROR - Error durante simulación: 'home_ownership:RENT'
+2026-03-24 00:46:58,876 - INFO - Cálculo WOE exitoso para: initial_list_status
+2026-03-24 00:46:59,120 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:46:59,126 - INFO - Scorecard construida exitosamente.
+2026-03-24 00:46:59,131 - ERROR - Error durante simulación: 'home_ownership:RENT'
+2026-03-24 00:48:48,767 - INFO - Cálculo WOE exitoso para: initial_list_status
+2026-03-24 00:48:49,064 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:48:49,069 - INFO - Scorecard construida exitosamente.
+2026-03-24 00:48:57,882 - INFO - Cálculo WOE exitoso para: initial_list_status
+2026-03-24 00:48:58,154 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:48:58,160 - INFO - Scorecard construida exitosamente.
+2026-03-24 00:48:58,293 - INFO - Simulación ejecutada. PD calculada: 0.9141, Score: 601
+2026-03-24 00:49:08,509 - INFO - Cálculo WOE exitoso para: initial_list_status
+2026-03-24 00:49:08,746 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:49:08,752 - INFO - Scorecard construida exitosamente.
+2026-03-24 00:49:08,854 - INFO - Simulación ejecutada. PD calculada: 0.9141, Score: 601
+2026-03-24 00:49:12,176 - INFO - Cálculo WOE exitoso para: initial_list_status
+2026-03-24 00:49:12,413 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:49:12,418 - INFO - Scorecard construida exitosamente.
+2026-03-24 00:49:12,519 - INFO - Simulación ejecutada. PD calculada: 0.9141, Score: 601
+2026-03-24 00:49:40,928 - INFO - Cálculo WOE exitoso para: initial_list_status
+2026-03-24 00:49:41,186 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:49:41,192 - INFO - Scorecard construida exitosamente.
+2026-03-24 00:49:41,286 - INFO - Simulación ejecutada. PD calculada: 0.8467, Score: 550
+2026-03-24 00:51:13,162 - INFO - Cálculo WOE exitoso para: initial_list_status
+2026-03-24 00:51:13,413 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:51:13,419 - INFO - Scorecard construida exitosamente.
+2026-03-24 00:53:27,937 - INFO - Cálculo WOE exitoso para: initial_list_status
+2026-03-24 00:53:28,186 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:53:28,194 - INFO - Scorecard successfully created.
+2026-03-24 00:54:20,198 - INFO - Cálculo WOE exitoso para: grade
+2026-03-24 00:54:20,449 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:54:20,455 - INFO - Scorecard successfully created.
+2026-03-24 00:58:09,661 - INFO - Archivos de datos cargados exitosamente.
+2026-03-24 00:58:11,234 - INFO - Cálculo WOE exitoso para: grade
+2026-03-24 00:58:11,512 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 00:58:11,518 - INFO - Scorecard successfully created.
+2026-03-24 01:01:46,920 - INFO - Cálculo WOE exitoso para: grade
+2026-03-24 01:01:47,223 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 01:01:47,229 - INFO - Scorecard successfully created.
+2026-03-24 01:01:47,360 - INFO - Simulación ejecutada. PD calculada: 0.8467, Score: 550
+2026-03-24 01:02:31,635 - INFO - Cálculo WOE exitoso para: grade
+2026-03-24 01:02:31,884 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 01:02:31,889 - INFO - Scorecard successfully created.
+2026-03-24 01:02:34,631 - INFO - Cálculo WOE exitoso para: grade
+2026-03-24 01:02:34,890 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 01:02:34,895 - INFO - Scorecard successfully created.
+2026-03-24 01:02:34,988 - INFO - Simulación ejecutada. PD calculada: 0.8467, Score: 550
+2026-03-24 01:03:49,463 - INFO - Cálculo WOE exitoso para: grade
+2026-03-24 01:03:49,724 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 01:03:49,729 - INFO - Scorecard successfully created.
+2026-03-24 01:03:52,658 - INFO - Cálculo WOE exitoso para: grade
+2026-03-24 01:03:52,941 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 01:03:52,948 - INFO - Scorecard successfully created.
+2026-03-24 01:03:53,048 - ERROR - Error durante simulación: MetricMixin.metric() missing 1 required positional argument: 'value'
+2026-03-24 01:04:11,451 - INFO - Cálculo WOE exitoso para: grade
+2026-03-24 01:04:11,701 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 01:04:11,706 - INFO - Scorecard successfully created.
+2026-03-24 01:04:14,467 - INFO - Cálculo WOE exitoso para: grade
+2026-03-24 01:04:14,754 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 01:04:14,760 - INFO - Scorecard successfully created.
+2026-03-24 01:04:14,861 - INFO - Simulación ejecutada. PD calculada: 0.8467, Score: 550
+2026-03-24 01:05:13,042 - INFO - Cálculo WOE exitoso para: grade
+2026-03-24 01:05:13,311 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 01:05:13,316 - INFO - Scorecard successfully created.
+2026-03-24 01:05:20,637 - INFO - Cálculo WOE exitoso para: grade
+2026-03-24 01:05:20,888 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 01:05:20,893 - INFO - Scorecard successfully created.
+2026-03-24 01:05:20,992 - INFO - Simulación ejecutada. PD calculada: 0.8467, Score: 550
+2026-03-24 01:06:22,471 - INFO - Cálculo WOE exitoso para: grade
+2026-03-24 01:06:22,723 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 01:06:22,729 - INFO - Scorecard successfully created.
+2026-03-24 01:08:26,732 - INFO - Cálculo WOE exitoso para: grade
+2026-03-24 01:08:26,996 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 01:08:27,004 - INFO - Scorecard construida exitosamente.
+2026-03-24 01:11:05,970 - INFO - Cálculo WOE exitoso para: grade
+2026-03-24 01:11:06,235 - INFO - Métricas de desempeño calculadas exitosamente.
+2026-03-24 01:11:06,244 - INFO - Scorecard construida exitosamente.
+2026-03-24 02:11:53,838 - ERROR - Error al cargar los datos: Error tokenizing data. C error: Expected 1 fields in line 3, saw 5541
+
+2026-03-24 02:11:53,840 - INFO - Modelo cargado exitosamente.
+2026-03-24 02:11:53,841 - WARNING - Deteniendo ejecución por falta de dependencias críticas.
+2026-03-24 02:13:11,915 - INFO - Archivos de datos cargados exitosamente.
+2026-03-24 02:16:56,150 - INFO - Archivos de datos cargados exitosamente.
+2026-03-24 02:21:53,269 - INFO - Archivos de datos cargados exitosamente.
